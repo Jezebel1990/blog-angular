@@ -5,27 +5,40 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { postListReducer } from './postList/reducers/post-list.reducer';
+import { PostListEffects } from './postList/effects/post-list.effects';
+import { PostListComponent } from './postList/components/post-list.component';
+import { CommonModule } from '@angular/common';
+import { PostListSevice } from './postList/services/post-list.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostListComponent
+
   ],
   imports: [
     BrowserModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatCardModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule,
 
+    StoreModule.forRoot({ posts: postListReducer}),
+    EffectsModule.forRoot([PostListEffects]),
   ],
-  providers: [],
+  providers: [PostListSevice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
