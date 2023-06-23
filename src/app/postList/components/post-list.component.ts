@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select} from '@ngrx/store';
+import { Store} from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PostList } from '../models/post-list.model';
-import * as PostListActions from './../actions/post-list.actions';
-
-
+import { loadData } from '../actions/post-list.actions';
+import { selectData } from '../store/post-list.store';
 
 @Component({
     selector: 'blogangular',
@@ -13,16 +11,15 @@ import * as PostListActions from './../actions/post-list.actions';
 })
 
 export class PostListComponent implements OnInit {
-    posts$!: Observable<PostList[]>;
-    loading$!: Observable<boolean>;
-    error$!: Observable<any>;
+    data!: Observable<{id: string, title: string}[]> ;
 
-    constructor(private store: Store<{ posts: PostList[]; loading: boolean, error: any}>) {}
+ constructor(private store: Store) {}
 
-    ngOnInit(){
-       this.posts$ = this.store.pipe(select(state => state.posts));
-       this.loading$ = this.store.pipe(select(state => state.loading));
-       this.error$ = this.store.pipe(select(state => state.error));
-        this.store.dispatch(PostListActions.loadPostList());  
-    }
-}
+ ngOnInit():void {
+
+  this.data = this.store.select(selectData);
+
+//   this.store.dispatch(loadData());
+     };
+ }
+    

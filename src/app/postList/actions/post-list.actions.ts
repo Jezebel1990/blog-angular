@@ -1,11 +1,11 @@
 import {createAction, props} from "@ngrx/store";
-import { PostList } from "../models/post-list.model";
 
-export const loadPostList = createAction('[Post] Load PostList');
-export const loadPostListSuccess = createAction(
- '[Post] Load Posts Success',
- props<{ posts: PostList[]}>()
+export const loadData = createAction('[Data] Load PostList');
+export const loadDataSuccess = createAction('[Data] Load Data Success', 
+props<{ data: any }>()
 );
-export const loadPostListFailure = createAction('[Post] Load Posts Failure', props<{ error: any }>());
+export const loadDataFailure = createAction(
+    '[Data] Load Posts Failure', 
+    props<{ error: any }>());
 
 

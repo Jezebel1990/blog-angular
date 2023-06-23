@@ -1,13 +1,15 @@
-<mat-card *ngFor="let post of (posts$ | async)">
-    <mat-card-title>{{ post.title }}</mat-card-title>
+
+  <mat-card>
+    <mat-card-header *ngFor="let data of data |async">
+      <mat-card-title ><p>{{ data.title}}</p></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Conteúdo do card</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>
+        <p>Botão</p>
+      </button>
+    </mat-card-actions>
   </mat-card>
-  
-  <div *ngIf="(loading$ | async)">
-    Carregando...
-  </div>
-  
-  <div *ngIf="(error$ | async)">
-    Ocorreu um erro ao carregar os posts.
-  </div>
-  
-  
+

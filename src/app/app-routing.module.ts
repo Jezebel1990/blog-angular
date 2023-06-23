@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent} from './postList/components/post-list.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para a rota '/home'
-     { path: '', component: PostListComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redireciona para a rota '/home'
+     { path: 'blogangular', component: PostListComponent },
     // { path: 'contact', component: ContactComponent },
     // { path: '**', component: PageNotFoundComponent } // Rota curinga para lidar com rotas inválidas
   ];

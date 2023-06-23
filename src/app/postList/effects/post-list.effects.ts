@@ -8,15 +8,15 @@ import * as  PostListActions from '../actions/post-list.actions';
 
 @Injectable()
 export class PostListEffects {
-    loadPosts$ = createEffect(() =>
+    loadData$ = createEffect(() =>
     this.actions$.pipe(
-        ofType(PostListActions.loadPostList),
+        ofType(PostListActions.loadData),
         mergeMap(() =>
-        this.postListService.getPostsFakeCall().pipe(
+        this.postListService.getJSONData().pipe(
             delay(2000),
-            map(posts => PostListActions.loadPostListSuccess({ posts })
+            map((data) => PostListActions.loadDataSuccess ({ data })
                 ),
-            catchError(error => of(PostListActions.loadPostListFailure({ error})))
+            catchError((error) => of(PostListActions.loadDataFailure({ error})))
         )
         )
     )

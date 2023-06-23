@@ -16,14 +16,21 @@ import { PostListEffects } from './postList/effects/post-list.effects';
 import { PostListComponent } from './postList/components/post-list.component';
 import { CommonModule } from '@angular/common';
 import { PostListSevice } from './postList/services/post-list.service';
+import { HttpClientModule } from '@angular/common/http';
+import {PostListModule} from '../../src/app/postList/postList.module';
+import { HomeComponent } from './postList/home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostListComponent
+    PostListComponent,
+    HomeComponent
+   
 
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -34,8 +41,8 @@ import { PostListSevice } from './postList/services/post-list.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-
-    StoreModule.forRoot({ posts: postListReducer}),
+    PostListModule,
+    StoreModule.forRoot({ }),
     EffectsModule.forRoot([PostListEffects]),
   ],
   providers: [PostListSevice],
