@@ -1,26 +1,48 @@
-import {createReducer, on} from '@ngrx/store';
-import * as PostListActions from '../actions/post-list.actions';
+import * as fromData from "./../actions/post-list.actions";
 
-export interface PostListState {
-    data: any;
+export interface DataState {
+    items: string[];
+    loading: boolean;
     error: any;
-}
-
-export const initialState: PostListState = {
-   data: null,
-   error: null
 };
 
-export const postListReducer = createReducer(
-    initialState,
-    on(PostListActions.loadDataSuccess, (state, { data }) => ({ 
+
+export const initialState: DataState = {
+   items: [],
+   loading: false,
+   error: null,
+};
+
+export type ActionsUnion = fromData.LoadDataBegin | fromData.LoadDataSuccess | fromData.LoadDataFailure;
+
+export function reducer(state: DataState = initialState, action: ActionsUnion): DataState {
+    switch (action.type) {
+        case fromData.PostListActions.LoadDataBegin: {
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        }
+   case fromData.PostListActions.LoadDataSuccess: {
+    return {
         ...state,
-         data, 
-         error: null
-        })),
-    on(PostListActions.loadDataFailure, (state, { error }) => ({ 
-        ...state, 
-        data: null, 
-        error
-    }))
-);
+        loading: false,
+        items: action.payload.data,
+    };
+   }
+   case fromData.PostListActions.LoadDataFailure: {
+    return{
+        ...state,
+        loading: false,
+        error: action.payload.error,
+    };
+   }
+
+default: {
+    return state;
+}
+    }
+}
+export const getItems = (state: DataState) => state.items;
+    

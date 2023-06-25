@@ -1,7 +1,33 @@
 "use strict";
 exports.__esModule = true;
-exports.loadDataFailure = exports.loadDataSuccess = exports.loadData = void 0;
-var store_1 = require("@ngrx/store");
-exports.loadData = store_1.createAction('[Data] Load PostList');
-exports.loadDataSuccess = store_1.createAction('[Data] Load Data Success', store_1.props());
-exports.loadDataFailure = store_1.createAction('[Data] Load Posts Failure', store_1.props());
+exports.LoadDataFailure = exports.LoadDataSuccess = exports.LoadDataBegin = exports.PostListActions = void 0;
+;
+var PostListActions;
+(function (PostListActions) {
+    PostListActions["LoadDataBegin"] = "[Data] Load data begin";
+    PostListActions["LoadDataSuccess"] = "[Data] Load data success";
+    PostListActions["LoadDataFailure"] = "[Data] Load data failure";
+})(PostListActions = exports.PostListActions || (exports.PostListActions = {}));
+var LoadDataBegin = /** @class */ (function () {
+    function LoadDataBegin() {
+        this.type = PostListActions.LoadDataBegin;
+    }
+    return LoadDataBegin;
+}());
+exports.LoadDataBegin = LoadDataBegin;
+var LoadDataSuccess = /** @class */ (function () {
+    function LoadDataSuccess(payload) {
+        this.payload = payload;
+        this.type = PostListActions.LoadDataSuccess;
+    }
+    return LoadDataSuccess;
+}());
+exports.LoadDataSuccess = LoadDataSuccess;
+var LoadDataFailure = /** @class */ (function () {
+    function LoadDataFailure(payload) {
+        this.payload = payload;
+        this.type = PostListActions.LoadDataFailure;
+    }
+    return LoadDataFailure;
+}());
+exports.LoadDataFailure = LoadDataFailure;

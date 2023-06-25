@@ -1,31 +1,30 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { delay, map, mergeMap, catchError } from "rxjs/operators";
+
 import { PostListSevice } from "../services/post-list.service";
 import * as  PostListActions from '../actions/post-list.actions';
+import { Injectable } from "@angular/core";
+import { Actions, Effect, ofType } from "@ngrx/effects";
+import { map, switchMap, catchError } from "rxjs/operators";
 
+import * as DataActions from "./../actions/post-list.actions";
+import { of } from "rxjs";
 
 @Injectable()
 export class PostListEffects {
-    loadData$ = createEffect(() =>
-    this.actions$.pipe(
-        ofType(PostListActions.loadData),
-        mergeMap(() =>
-        this.postListService.getJSONData().pipe(
-            delay(2000),
-            map((data) => PostListActions.loadDataSuccess ({ data })
-                ),
-            catchError((error) => of(PostListActions.loadDataFailure({ error})))
-        )
-        )
-    )
-    
-    );
+  constructor(private actions: Actions, private postListService: PostListSevice) {}
 
-    constructor(
-        private actions$: Actions,
-        private postListService: PostListSevice
-    ) {}
+@Effect()
 
-}
+    loadData = this.actions.pipe(
+        ofType(DataActions.PostListActions.LoadDataBegin),
+        switchMap(() => {
+         return this.postListService.loadData().pipe(
+        map(data => new DataActions.LoadDataSuccess
+         ({data: data})),
+         catchError(error =>
+            of(new DataActions.LoadDataFailure
+                ({ error: error }))
+            )
+         );
+            })
+);
+        }

@@ -6,23 +6,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.PostListSevice = void 0;
+exports.PostListService = void 0;
 var core_1 = require("@angular/core");
 var operators_1 = require("rxjs/operators");
-var PostListSevice = /** @class */ (function () {
-    function PostListSevice(http) {
+var reducers_1 = require("../reducers");
+var DataActions = require("./../actions/post-list.actions");
+var PostListService = /** @class */ (function () {
+    function PostListService(store, http) {
+        this.store = store;
         this.http = http;
-        this.data = [];
     }
-    PostListSevice.prototype.getJSONData = function () {
+    PostListService.prototype.loadData = function () {
         return this.http.get('assets/data.json').pipe(operators_1.delay(2000));
     };
-    PostListSevice = __decorate([
+    // Simula uma chamada assincrona com atraso de 2 segundos 
+    PostListService.prototype.load = function () {
+        this.store.dispatch(new DataActions.LoadDataBegin());
+    };
+    PostListService.prototype.getData = function () {
+        return this.store.select(reducers_1.getDataState);
+    };
+    PostListService.prototype.getItems = function () {
+        return this.store.select(reducers_1.getAllItems);
+    };
+    PostListService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         })
-    ], PostListSevice);
-    return PostListSevice;
+    ], PostListService);
+    return PostListService;
 }());
-exports.PostListSevice = PostListSevice;
-// Simula uma chamada assincrona com atraso de 2 segundos 
+exports.PostListService = PostListService;

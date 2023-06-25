@@ -20,13 +20,10 @@ var app_component_1 = require("./app.component");
 var animations_1 = require("@angular/platform-browser/animations");
 var store_1 = require("@ngrx/store");
 var effects_1 = require("@ngrx/effects");
-var post_list_effects_1 = require("./postList/effects/post-list.effects");
-var post_list_component_1 = require("./postList/components/post-list.component");
 var common_1 = require("@angular/common");
-var post_list_service_1 = require("./postList/services/post-list.service");
 var http_1 = require("@angular/common/http");
-var postList_module_1 = require("../../src/app/postList/postList.module");
 var home_component_1 = require("./postList/home/home.component");
+var effects_2 = require("./postList/effects");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -34,7 +31,6 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                post_list_component_1.PostListComponent,
                 home_component_1.HomeComponent
             ],
             imports: [
@@ -49,11 +45,10 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
                 animations_1.BrowserAnimationsModule,
                 common_1.CommonModule,
-                postList_module_1.PostListModule,
                 store_1.StoreModule.forRoot({}),
-                effects_1.EffectsModule.forRoot([post_list_effects_1.PostListEffects]),
+                effects_1.EffectsModule.forRoot(effects_2.effects),
             ],
-            providers: [post_list_service_1.PostListSevice],
+            providers: [],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

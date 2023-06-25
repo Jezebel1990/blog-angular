@@ -1,7 +1,7 @@
 {
   "success": true,
   "total": 10,
-  "data": [
+  "items": [
     {
       "id": "post1",
       "title": "Post 1 title",

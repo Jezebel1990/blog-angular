@@ -11,20 +11,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { postListReducer } from './postList/reducers/post-list.reducer';
-import { PostListEffects } from './postList/effects/post-list.effects';
-import { PostListComponent } from './postList/components/post-list.component';
 import { CommonModule } from '@angular/common';
-import { PostListSevice } from './postList/services/post-list.service';
 import { HttpClientModule } from '@angular/common/http';
-import {PostListModule} from '../../src/app/postList/postList.module';
 import { HomeComponent } from './postList/home/home.component';
+import { effects } from './postList/effects';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostListComponent,
     HomeComponent
    
 
@@ -41,11 +36,10 @@ import { HomeComponent } from './postList/home/home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    PostListModule,
     StoreModule.forRoot({ }),
-    EffectsModule.forRoot([PostListEffects]),
+    EffectsModule.forRoot(effects),
   ],
-  providers: [PostListSevice],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

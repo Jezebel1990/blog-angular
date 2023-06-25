@@ -11,17 +11,30 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 exports.__esModule = true;
-exports.postListReducer = exports.initialState = void 0;
-var store_1 = require("@ngrx/store");
-var PostListActions = require("../actions/post-list.actions");
+exports.getItems = exports.reducer = exports.initialState = void 0;
+var fromData = require("./../actions/post-list.actions");
+;
 exports.initialState = {
-    data: null,
+    items: [],
+    loading: false,
     error: null
 };
-exports.postListReducer = store_1.createReducer(exports.initialState, store_1.on(PostListActions.loadDataSuccess, function (state, _a) {
-    var data = _a.data;
-    return (__assign(__assign({}, state), { data: data, error: null }));
-}), store_1.on(PostListActions.loadDataFailure, function (state, _a) {
-    var error = _a.error;
-    return (__assign(__assign({}, state), { data: null, error: error }));
-}));
+function reducer(state, action) {
+    if (state === void 0) { state = exports.initialState; }
+    switch (action.type) {
+        case fromData.PostListActions.LoadDataBegin: {
+            return __assign(__assign({}, state), { loading: true, error: null });
+        }
+        case fromData.PostListActions.LoadDataSuccess: {
+            return __assign(__assign({}, state), { loading: false, items: action.payload.data });
+        }
+        case fromData.PostListActions.LoadDataFailure: {
+            return __assign(__assign({}, state), { loading: false, error: action.payload.error });
+        }
+        default: {
+            return state;
+        }
+    }
+}
+exports.reducer = reducer;
+exports.getItems = function (state) { return state.items; };

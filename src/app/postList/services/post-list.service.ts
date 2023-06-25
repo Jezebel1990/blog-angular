@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { delay }  from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { AppState, getDataState, getAllItems } from '../reducers';
+import { Store } from "@ngrx/store";
 
+import * as DataActions from "./../actions/post-list.actions"
 
 @Injectable({
     providedIn: 'root'
 })
-export class PostListSevice {
-  
-   data:  any[] = [];
 
+export class PostListService {
     constructor(
-      private http: HttpClient
+      private store: Store<AppState>
+      ,private http: HttpClient
       ) {}
 
 
-     getJSONData(): Observable<any> {
-      return this.http.get<{id: string, title: string }[]>('assets/data.json').pipe(delay(2000));
+loadData() {
+      return this.http.get('assets/data.json').pipe(delay(2000));
     }
+
+// Simula uma chamada assincrona com atraso de 2 segundos 
+load() {
+  this.store.dispatch(new DataActions.LoadDataBegin());
+}
+getData() {
+  return this.store.select(getDataState);
+}
+getItems() {
+  return this.store.select(getAllItems);
+}
+
   }
-        // Simula uma chamada assincrona com atraso de 2 segundos 
+        
       
