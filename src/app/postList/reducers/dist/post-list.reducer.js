@@ -22,13 +22,13 @@ exports.initialState = {
 function reducer(state, action) {
     if (state === void 0) { state = exports.initialState; }
     switch (action.type) {
-        case fromData.PostListActions.LoadDataBegin: {
+        case fromData.ActionTypes.LoadDataBegin: {
             return __assign(__assign({}, state), { loading: true, error: null });
         }
-        case fromData.PostListActions.LoadDataSuccess: {
+        case fromData.ActionTypes.LoadDataSuccess: {
             return __assign(__assign({}, state), { loading: false, items: action.payload.data });
         }
-        case fromData.PostListActions.LoadDataFailure: {
+        case fromData.ActionTypes.LoadDataFailure: {
             return __assign(__assign({}, state), { loading: false, error: action.payload.error });
         }
         default: {

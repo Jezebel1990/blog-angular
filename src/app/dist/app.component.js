@@ -6,23 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AppRoutingModule = void 0;
+exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var home_component_1 = require("./postList/home/home.component");
-var routes = [
-    { path: '', component: home_component_1.HomeComponent, pathMatch: 'full' },
-];
-var AppRoutingModule = /** @class */ (function () {
-    function AppRoutingModule() {
+var AppComponent = /** @class */ (function () {
+    function AppComponent(datService) {
+        this.datService = datService;
+        this.datService.load();
     }
-    AppRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
-            // outros metadados do módulo
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
         })
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.AppRoutingModule = AppRoutingModule;
+exports.AppComponent = AppComponent;

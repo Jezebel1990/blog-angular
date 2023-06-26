@@ -10,7 +10,7 @@ import * as DataActions from "./../actions/post-list.actions"
     providedIn: 'root'
 })
 
-export class PostListService {
+export class DataService {
     constructor(
       private store: Store<AppState>
       ,private http: HttpClient

@@ -24,6 +24,8 @@ var common_1 = require("@angular/common");
 var http_1 = require("@angular/common/http");
 var home_component_1 = require("./postList/home/home.component");
 var effects_2 = require("./postList/effects");
+var post_list_component_1 = require("./postList/components/post-list.component");
+var reducers_1 = require("./postList/reducers");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -31,7 +33,8 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                home_component_1.HomeComponent
+                home_component_1.HomeComponent,
+                post_list_component_1.PostListComponent
             ],
             imports: [
                 http_1.HttpClientModule,
@@ -45,7 +48,7 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
                 animations_1.BrowserAnimationsModule,
                 common_1.CommonModule,
-                store_1.StoreModule.forRoot({}),
+                store_1.StoreModule.forRoot(reducers_1.reducers, { metaReducers: reducers_1.metaReducers }),
                 effects_1.EffectsModule.forRoot(effects_2.effects),
             ],
             providers: [],

@@ -13,25 +13,27 @@ export const initialState: DataState = {
    error: null,
 };
 
-export type ActionsUnion = fromData.LoadDataBegin | fromData.LoadDataSuccess | fromData.LoadDataFailure;
 
-export function reducer(state: DataState = initialState, action: ActionsUnion): DataState {
+export function reducer(
+    state = initialState,
+    action: fromData.ActionsUnion
+): DataState {
     switch (action.type) {
-        case fromData.PostListActions.LoadDataBegin: {
+        case fromData.ActionTypes.LoadDataBegin: {
             return {
                 ...state,
                 loading: true,
                 error: null,
             };
         }
-   case fromData.PostListActions.LoadDataSuccess: {
+   case fromData.ActionTypes.LoadDataSuccess: {
     return {
         ...state,
         loading: false,
         items: action.payload.data,
     };
    }
-   case fromData.PostListActions.LoadDataFailure: {
+   case fromData.ActionTypes.LoadDataFailure: {
     return{
         ...state,
         loading: false,

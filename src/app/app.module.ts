@@ -15,12 +15,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './postList/home/home.component';
 import { effects } from './postList/effects';
-
+import {PostListComponent} from './postList/components/post-list.component';
+import { reducers, metaReducers } from './postList/reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PostListComponent
    
 
   ],
@@ -36,7 +38,7 @@ import { effects } from './postList/effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    StoreModule.forRoot({ }),
+    StoreModule.forRoot(reducers,{ metaReducers}),
     EffectsModule.forRoot(effects),
   ],
   providers: [],

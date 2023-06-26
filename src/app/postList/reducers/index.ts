@@ -14,9 +14,9 @@ export interface AppState {
 }
 
 
-// export const reducers: ActionReducerMap<AppState> = {
-//   data: fromData.reducer,
-// };
+export const reducers: ActionReducerMap<AppState> = {
+  data: fromData.reducer,
+};
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production
 ? []

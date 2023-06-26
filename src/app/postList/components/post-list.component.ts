@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { PostListSevice } from '../services/post-list.service';
+import { DataService } from '../services/post-list.service';
 
 
 @Component({
@@ -10,12 +9,17 @@ import { PostListSevice } from '../services/post-list.service';
 })
 
 export class PostListComponent implements OnInit {
- constructor(private postListService: PostListSevice) {}
+dados: any;
+ 
+
+ constructor(private dataService: DataService) {}
 
  ngOnInit(){
-this.postListService.getData().subscribe(data =>{ console.log(data);
+this.dataService.getData().subscribe(data => {
+    this.dados = data;
+    console.log(this.dados);
 
- })
-     };
+ });
+     
  }
-    
+}

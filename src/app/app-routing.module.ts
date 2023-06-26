@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './postList/home/home.component';
 
 
+
+
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redireciona para a rota '/home'
-     { path: 'home', component: HomeComponent},
+    { path: '', component: HomeComponent , pathMatch: 'full'  }, // Redireciona para a rota '/home'
+ 
+    //  {path:'', redirectTo:'blogangular', component: PostListComponent}
     // { path: 'contact', component: ContactComponent },
     // { path: '**', component: PageNotFoundComponent } // Rota curinga para lidar com rotas inválidas
   ];

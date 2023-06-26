@@ -1,3 +1,3 @@
-import { PostListEffects } from "./post-list.effects";
+import { DataEffects } from "./post-list.effects";
 
-export const effects: any[] = [PostListEffects]
+export const effects: any[] = [DataEffects]
