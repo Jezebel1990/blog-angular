@@ -13,19 +13,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './postList/home/home.component';
 import { effects } from './postList/effects';
-import {PostListComponent} from './postList/components/post-list.component';
+
 import { reducers, metaReducers } from './postList/reducers';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    PostListComponent
-   
-
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -44,4 +38,4 @@ import { reducers, metaReducers } from './postList/reducers';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

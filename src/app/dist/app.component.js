@@ -9,10 +9,18 @@ exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(datService) {
-        this.datService = datService;
-        this.datService.load();
+    // dados: any;
+    function AppComponent(dataService) {
+        this.dataService = dataService;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataService.getData().subscribe(function (data) {
+            // this.dados = data;
+            _this.dataService.load();
+            console.log(data);
+        });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',

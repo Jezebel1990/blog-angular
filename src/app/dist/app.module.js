@@ -22,20 +22,15 @@ var store_1 = require("@ngrx/store");
 var effects_1 = require("@ngrx/effects");
 var common_1 = require("@angular/common");
 var http_1 = require("@angular/common/http");
-var home_component_1 = require("./postList/home/home.component");
 var effects_2 = require("./postList/effects");
-var post_list_component_1 = require("./postList/components/post-list.component");
 var reducers_1 = require("./postList/reducers");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [
-                app_component_1.AppComponent,
-                home_component_1.HomeComponent,
-                post_list_component_1.PostListComponent
-            ],
+            declarations: [app_component_1.AppComponent],
+            entryComponents: [],
             imports: [
                 http_1.HttpClientModule,
                 platform_browser_1.BrowserModule,
